@@ -53,4 +53,6 @@
     :components
     ((:file "test-multisig"))))
   :perform (test-op (op c)
-             (uiop:symbol-call :cl-multisig-protocols.test :run-all-tests)))
+             (let ((result (uiop:symbol-call :cl-multisig-protocols.test :run-all-tests)))
+               (unless result
+                 (error "Tests failed")))))
