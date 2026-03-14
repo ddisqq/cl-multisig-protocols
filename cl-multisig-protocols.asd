@@ -1,3 +1,6 @@
+;; Copyright (c) 2024-2026 Parkian Company LLC. All rights reserved.
+;; SPDX-License-Identifier: BSD-3-Clause
+
 ;;;; -*- Mode: Lisp; Syntax: ANSI-Common-Lisp; Base: 10 -*-
 ;;;; ============================================================================
 ;;;; CL-MULTISIG-PROTOCOLS - Threshold Multi-Signature Protocols for Common Lisp
@@ -19,7 +22,7 @@
 
 (asdf:defsystem #:cl-multisig-protocols
   :name "cl-multisig-protocols"
-  :version "1.0.0"
+  :version "0.1.0"
   :author "Parkian Company LLC"
   :license "MIT"
   :description "Threshold multi-signature protocols (MuSig2, FROST) for Common Lisp"
@@ -40,11 +43,11 @@
      (:file "frost")
      (:file "multisig"))))
 
-  :in-order-to ((test-op (test-op #:cl-multisig-protocols/test))))
+  :in-order-to ((asdf:test-op (test-op #:cl-multisig-protocols/test))))
 
 (asdf:defsystem #:cl-multisig-protocols/test
   :name "cl-multisig-protocols-test"
-  :version "1.0.0"
+  :version "0.1.0"
   :description "Tests for cl-multisig-protocols"
   :depends-on (#:cl-multisig-protocols)
   :serial t
@@ -52,7 +55,7 @@
   ((:module "test"
     :components
     ((:file "test-multisig"))))
-  :perform (test-op (op c)
+  :perform (asdf:test-op (op c)
              (let ((result (uiop:symbol-call :cl-multisig-protocols.test :run-all-tests)))
                (unless result
                  (error "Tests failed")))))
