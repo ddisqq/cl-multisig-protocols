@@ -34,14 +34,10 @@
   :components
   ((:file "package")
    (:module "src"
-    :serial t
-    :components
-    ((:file "util")
-     (:file "coordinator")
-     (:file "participant")
-     (:file "musig2")
-     (:file "frost")
-     (:file "multisig"))))
+                :components ((:file "package")
+                             (:file "conditions" :depends-on ("package"))
+                             (:file "types" :depends-on ("package"))
+                             (:file "cl-multisig-protocols" :depends-on ("package" "conditions" "types"))))))
 
   :in-order-to ((asdf:test-op (test-op #:cl-multisig-protocols/test))))
 
